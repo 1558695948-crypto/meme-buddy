@@ -26,6 +26,16 @@ python3 tools/import_sample_pack.py
 
 这些图片属于第三方素材，不因收录在本仓库而获得新的授权。部分来源的商业使用及再分发权尚未核实；具体见 `sample-pack/manifest.json`，不能将示例图片当成已授权的商业素材包。作者如需更正或移除，可通过仓库 Issue 联系维护者。
 
+## MoSo 通用表情包
+
+`moso-pack/` 包含32枚 MoSo 原创衍生表情，统一白色折纸兔头、黑西装与橙色背景。每枚384×384，约18–28 KB；`overview.jpg` 提供总览。第26枚“回头见”已修正挥手手臂连接。母版和独立修正版均保留，可通过构建脚本重新导出。
+
+```bash
+python3 tools/import_sample_pack.py --pack moso-pack
+```
+
+此包由用户提供的 MoSo 形象参考生成并授权上传。第三方商业使用或再分发需另行取得权利方许可。
+
 ## 当前能力范围
 
 - 本地 PNG/JPEG/WebP/GIF 导入与精确字节去重；

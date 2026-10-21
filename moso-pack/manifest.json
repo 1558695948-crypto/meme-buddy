@@ -1,0 +1,915 @@
+[
+  {
+    "id": "2eb62e42cf02960a0c4d12a557730377e031ebcbf1ccb922504d55921c52d841",
+    "file": "assets/moso-01.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；挥手打招呼",
+    "meaning": "你好，通过动作表达对应语气",
+    "text": "你好",
+    "emotions": [
+      "neutral"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "问好",
+      "招呼",
+      "嗨"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "5107f96a1e3af09913ce9d0c4a745a843bc20518555118035f9a7cfb7f848e20",
+    "file": "assets/moso-02.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；抬手OK确认收到",
+    "meaning": "收到，通过动作表达对应语气",
+    "text": "收到",
+    "emotions": [
+      "neutral"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "确认",
+      "收到",
+      "明白"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "60c86db1fbda52576fd7716d332fdd08132e571f53c8c5134476872618aaaa5d",
+    "file": "assets/moso-03.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；双手点赞表示同意",
+    "meaning": "没问题，通过动作表达对应语气",
+    "text": "没问题",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "可以",
+      "没问题",
+      "好的"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "c857f749c59a6253866d1274a5040a9edd7a0fd94f83be096ce13df90049beee",
+    "file": "assets/moso-04.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；手放胸口鞠躬感谢",
+    "meaning": "谢谢，通过动作表达对应语气",
+    "text": "谢谢",
+    "emotions": [
+      "grateful"
+    ],
+    "intents": [
+      "thanks"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "感激",
+      "感谢",
+      "谢谢"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "ab97ba3102c412b390f49977236cd8e01337d0c915d23ebac11f1aa26398d06e",
+    "file": "assets/moso-05.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；双手鼓掌称赞",
+    "meaning": "太棒了，通过动作表达对应语气",
+    "text": "太棒了",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "celebrate"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "厉害",
+      "太棒了",
+      "赞"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "82bebf752ecfd3231b063ca61aa6a83d3337191f2759890ab6621b12f2a01200",
+    "file": "assets/moso-06.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；双拳举起庆祝完成",
+    "meaning": "搞定，通过动作表达对应语气",
+    "text": "搞定",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "celebrate"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "完成",
+      "搞定",
+      "成功",
+      "跑通"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "不可用表情代替真实执行状态或承诺"
+    ],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "7131e3ccec4e2f8b35d36f27d05bb63b784b9276f6f7d733cb6986aa87f37e51",
+    "file": "assets/moso-07.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；向前握拳打气",
+    "meaning": "加油，通过动作表达对应语气",
+    "text": "加油",
+    "emotions": [
+      "encouraging"
+    ],
+    "intents": [
+      "support"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "鼓励",
+      "加油",
+      "努力"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "fb2faf40ac38e3e53f288ce0fc9ca29de16610254fb929dbc593fb31930dafa1",
+    "file": "assets/moso-08.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；双手捧橙色爱心",
+    "meaning": "给你比心，通过动作表达对应语气",
+    "text": "给你比心",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "thanks"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "比心",
+      "喜欢",
+      "爱心",
+      "谢谢"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "不适合亲昵表达的正式场合"
+    ],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "5bb1d253bb43dc609f188679a0fcd6d547e7b6c42b974fa284b209b83ba550dc",
+    "file": "assets/moso-09.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；托腮思考",
+    "meaning": "让我想想，通过动作表达对应语气",
+    "text": "让我想想",
+    "emotions": [
+      "confused"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "思考",
+      "想想",
+      "琢磨"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "64efc864f000f208dda2f435c82d0faf3ce06538b5240a4fd5517eb5df3cfead",
+    "file": "assets/moso-10.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；摊手歪头疑惑",
+    "meaning": "啊？，通过动作表达对应语气",
+    "text": "啊？",
+    "emotions": [
+      "confused"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "疑惑",
+      "什么",
+      "啊",
+      "不懂"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "21228ef77f3627a1942caa661b9d3243ac75c0db8f5232a7ca1f59046e7670fb",
+    "file": "assets/moso-11.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；双臂展开表示不可思议",
+    "meaning": "这合理吗，通过动作表达对应语气",
+    "text": "这合理吗",
+    "emotions": [
+      "confused"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "合理",
+      "疑惑",
+      "离谱"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "d8982cd357a10c072119df185197b08b0062a418b3ad43e6628620461fe320eb",
+    "file": "assets/moso-12.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；扶额无奈",
+    "meaning": "无语了，通过动作表达对应语气",
+    "text": "无语了",
+    "emotions": [
+      "speechless"
+    ],
+    "intents": [
+      "tease"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "无语",
+      "无奈",
+      "汗颜"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "严肃冲突",
+      "用户痛苦倾诉"
+    ],
+    "sarcasm": "possible",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "2033983e445b756fcb55a94d2a9f18a57b0688f59c2efc11779be28d61d9c1fb",
+    "file": "assets/moso-13.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；抱臂侧头怀疑",
+    "meaning": "真的吗，通过动作表达对应语气",
+    "text": "真的吗",
+    "emotions": [
+      "surprised"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "真的",
+      "确认",
+      "怀疑"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "fe46036f7127ab3c5770bb37f50041471ab4e6b61a05721be372a199e944709e",
+    "file": "assets/moso-14.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；俯身抬手遮眉观察",
+    "meaning": "我看看，通过动作表达对应语气",
+    "text": "我看看",
+    "emotions": [
+      "neutral"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "查看",
+      "检查",
+      "看看"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "f14e03afb7822478ba04a1fdc038d480f631e88df01e4eb6422ca9ec6c24cfd2",
+    "file": "assets/moso-15.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；看手腕上的表",
+    "meaning": "等一下，通过动作表达对应语气",
+    "text": "等一下",
+    "emotions": [
+      "neutral"
+    ],
+    "intents": [
+      "wait"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "等待",
+      "等一下",
+      "稍等"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "0ab0a9764d6d4761a3a2f30a1ca436991eb0fe371d9a360f9ee0ff29ce031d61",
+    "file": "assets/moso-16.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；专注操作笔记本电脑",
+    "meaning": "正在处理，通过动作表达对应语气",
+    "text": "正在处理",
+    "emotions": [
+      "neutral"
+    ],
+    "intents": [
+      "wait"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "处理",
+      "正在忙",
+      "工作",
+      "写代码"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "不可用表情代替真实执行状态或承诺"
+    ],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "e221743a531a322afd835e81b0a4e02256bf0d59c4477aafe9f17a6c8c192eba",
+    "file": "assets/moso-17.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；弯腰捂腹大笑",
+    "meaning": "哈哈哈，通过动作表达对应语气",
+    "text": "哈哈哈",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "celebrate"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "好笑",
+      "哈哈",
+      "笑死"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "b4ffda56550d3b159c4c6199c35080fdac31f2c8a28028c9607ca82ff2437f45",
+    "file": "assets/moso-18.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；后仰双手举起惊讶",
+    "meaning": "震惊，通过动作表达对应语气",
+    "text": "震惊",
+    "emotions": [
+      "surprised"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "震惊",
+      "惊讶",
+      "意外"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "07a4cf3332bb50906bcf2a027aca650f31ea03a5540edc94a934b96ff4ddfdb2",
+    "file": "assets/moso-19.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；指向自己略显尴尬",
+    "meaning": "是我吗，通过动作表达对应语气",
+    "text": "是我吗",
+    "emotions": [
+      "confused"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "是我",
+      "指我",
+      "叫我"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "3818d9607a210876090a6f68141166549a0abc76adbd99ff2c2f336384c1a62a",
+    "file": "assets/moso-20.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；耸肩摊手无奈",
+    "meaning": "我尽力了，通过动作表达对应语气",
+    "text": "我尽力了",
+    "emotions": [
+      "sad"
+    ],
+    "intents": [
+      "empathize"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "尽力",
+      "无奈",
+      "失败"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "c46ebe2c94c6bb1090647e7391198fd38404ee5a6ec26d5d85ae49c345a8860a",
+    "file": "assets/moso-21.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；低头双手相握致歉",
+    "meaning": "对不起，通过动作表达对应语气",
+    "text": "对不起",
+    "emotions": [
+      "sad"
+    ],
+    "intents": [
+      "apologize"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "抱歉",
+      "道歉",
+      "对不起"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "58223d686572bf4931ea4d4c65fa6202b2bb63f409dbfb9fcd6640b45efbda15",
+    "file": "assets/moso-22.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；双手放胸前带泪滴符号",
+    "meaning": "委屈，通过动作表达对应语气",
+    "text": "委屈",
+    "emotions": [
+      "sad"
+    ],
+    "intents": [
+      "empathize"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "委屈",
+      "难过",
+      "伤心"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "266341baf055ba884f211e73640ca64962b5b0a0551dcdabe7a6afa6d46047a9",
+    "file": "assets/moso-23.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；趴在桌子上休息",
+    "meaning": "累了，通过动作表达对应语气",
+    "text": "累了",
+    "emotions": [
+      "sad"
+    ],
+    "intents": [
+      "empathize"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "疲惫",
+      "累",
+      "休息"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "1fb0d2c0b049a7923788e9ffa19a3b11f4e85f105f4792ea33af35dfc2028c19",
+    "file": "assets/moso-24.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；从边缘探出兔头围观",
+    "meaning": "悄悄围观，通过动作表达对应语气",
+    "text": "悄悄围观",
+    "emotions": [
+      "playful"
+    ],
+    "intents": [
+      "wait"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "围观",
+      "吃瓜",
+      "偷看"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "a6e565169bcf4af96d25dbf3687fd1c76a17a2922527fba2c3d9c3efaa56bfe4",
+    "file": "assets/moso-25.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；举白色杯子喝水",
+    "meaning": "喝口水，通过动作表达对应语气",
+    "text": "喝口水",
+    "emotions": [
+      "neutral"
+    ],
+    "intents": [
+      "support"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "喝水",
+      "休息",
+      "缓缓"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "79ce3758db646906147a7923ab9833195370cf908126aa0bca89b5c939ca476e",
+    "file": "assets/moso-26.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；正面略侧身自然抬臂挥手告别",
+    "meaning": "回头见，通过动作表达对应语气",
+    "text": "回头见",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "再见",
+      "拜拜",
+      "回头见"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "b269907d792a3106cca12aa4f4ebec3019be14bdffb2bbdb768a15c209079911",
+    "file": "assets/moso-27.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；伸展双臂迎接早晨",
+    "meaning": "早上好，通过动作表达对应语气",
+    "text": "早上好",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "早安",
+      "早上好",
+      "问好"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "6a93dbfbb67ad55d69fe8787a18445b16de3fc3e76673af3fd13694d40a4794e",
+    "file": "assets/moso-28.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；合掌枕脸睡觉",
+    "meaning": "晚安，通过动作表达对应语气",
+    "text": "晚安",
+    "emotions": [
+      "neutral"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "晚安",
+      "睡觉",
+      "休息"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "157e3c6ea1028ea508775774b85c524d013a8b35956a3d10b6c0d4453263d66a",
+    "file": "assets/moso-29.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；双手指向前方自信回应",
+    "meaning": "安排上了，通过动作表达对应语气",
+    "text": "安排上了",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "acknowledge"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "安排",
+      "可以",
+      "好的"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "不可用表情代替真实执行状态或承诺"
+    ],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "20da1618d80d0a82072c01f98a41d6c05e549e05b7180ac3a7c539fab274a744",
+    "file": "assets/moso-30.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；伸出手掌温和安抚",
+    "meaning": "别急，通过动作表达对应语气",
+    "text": "别急",
+    "emotions": [
+      "encouraging"
+    ],
+    "intents": [
+      "support"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "别急",
+      "放松",
+      "慢慢来"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "6efa2965cb3910b9490b40fb4ac4cf02d16be2f5f418f8ad9e0e8d1058cca96e",
+    "file": "assets/moso-31.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；伸出拳头碰拳陪伴",
+    "meaning": "我在呢，通过动作表达对应语气",
+    "text": "我在呢",
+    "emotions": [
+      "encouraging"
+    ],
+    "intents": [
+      "support"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "陪伴",
+      "我在",
+      "支持"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  },
+  {
+    "id": "c36214d0f982dec54f64fd7772db02b2423d7dfd6fc9f76880470847050c2403",
+    "file": "assets/moso-32.jpg",
+    "description": "MoSo白色折纸兔头、黑西装、橙色背景；举复古麦克风和拳头庆祝",
+    "meaning": "下班啦，通过动作表达对应语气",
+    "text": "下班啦",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "celebrate"
+    ],
+    "tags": [
+      "MoSo",
+      "moso",
+      "下班",
+      "收工",
+      "完成"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "不可用表情代替真实执行状态或承诺"
+    ],
+    "sarcasm": "none",
+    "source": "基于用户提供的MoSo形象参考，由内置imagegen生成；母版网格分切，第26枚使用独立动作修正版",
+    "rights": "用户授权本次制作、本地使用及上传其GitHub仓库；未另行授予第三方商业再分发权"
+  }
+]

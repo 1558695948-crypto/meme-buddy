@@ -11,9 +11,10 @@ import tempfile
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--library', default='~/.meme-buddy')
+    parser.add_argument('--pack', type=Path, help='Alternate pack directory with manifest.json')
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
-    pack = root / 'sample-pack'
+    pack = (args.pack or root / 'sample-pack').resolve()
     cli = root / 'meme-buddy/scripts/meme_buddy.py'
     records = json.loads((pack / 'manifest.json').read_text(encoding='utf-8'))
     # Verify every asset before mutating the target library.
