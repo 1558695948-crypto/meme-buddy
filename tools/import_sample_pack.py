@@ -15,7 +15,7 @@ def main():
     root = Path(__file__).resolve().parent.parent
     pack = root / 'sample-pack'
     cli = root / 'meme-buddy/scripts/meme_buddy.py'
-    records = json.loads((pack / 'manifest.json').read_text())
+    records = json.loads((pack / 'manifest.json').read_text(encoding='utf-8'))
     # Verify every asset before mutating the target library.
     for record in records:
         image = (pack / record['file']).resolve()
@@ -29,7 +29,7 @@ def main():
         metadata = {key: value for key, value in record.items() if key not in {'id', 'file'}}
         with tempfile.TemporaryDirectory() as folder:
             target = Path(folder) / 'metadata.json'
-            target.write_text(json.dumps(metadata, ensure_ascii=False))
+            target.write_text(json.dumps(metadata, ensure_ascii=False), encoding='utf-8')
             subprocess.run(command + ['annotate', record['id'], str(target)], check=True, capture_output=True)
     print(f'Imported {len(records)} annotated memes.')
 

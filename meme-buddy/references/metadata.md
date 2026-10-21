@@ -1,5 +1,7 @@
 # Metadata for visual annotation
 
+Search treats an explicit `--intent` as a required match. Relationship filters do not increase relevance; an unspecified asset relationship remains a hint for Agent review. Chinese queries can match annotated multi-character tag phrases inside full sentences. The CLI suppresses a few immediate negative prefixes for this tag expansion, but does not understand negation, sarcasm or indirect implications in general; map the intended reaction before search. Emotion remains a ranking hint. Unrelated queries, metadata field names and results with nonpositive final scores should produce no candidates.
+
 Use at least one standard emotion and intent tag where applicable. Emotions: `happy`, `grateful`, `encouraging`, `confused`, `surprised`, `speechless`, `sad`, `playful`, `neutral`. Intents: `celebrate`, `thanks`, `support`, `acknowledge`, `wait`, `apologize`, `tease`, `empathize`, `question`. Add Chinese synonyms to tags and describe the actual pragmatic meaning in natural language. Example: “汗颜”“无言以对” may map to `speechless`; sarcastic “你真棒” may map to `tease`, not `celebrate`.
 
 Annotate after viewing the actual image. Required: nonempty `description` and `meaning`. Optional arrays default empty. Strings and tags may be Chinese or English; use consistent language or bilingual synonyms for recall.

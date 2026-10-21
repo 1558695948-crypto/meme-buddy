@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import tempfile
@@ -11,6 +12,28 @@ import time
 
 EXTENSIONS = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
 ARRAYS = ('emotions', 'intents', 'tags', 'relationships', 'avoid')
+
+
+def lexical_score(query, item):
+    """Recall by values and explicit tag phrases; never JSON field names."""
+    query = query.casefold().strip()
+    values = []
+    for field in ('description', 'meaning', 'text', 'emotions', 'intents', 'tags'):
+        value = item.get(field, '')
+        values.extend(value if isinstance(value, list) else [value])
+    haystack = ' '.join(values).casefold()
+    terms = set(re.findall(r'[\u3400-\u9fff]+|[a-z0-9]+', query))
+    matches = {term for term in terms if term in haystack and (len(term) > 1 or term in item.get('tags', []))}
+    for tag in item.get('tags', []):
+        tag = tag.casefold().strip()
+        if len(tag) < 2:
+            continue
+        for match in re.finditer(re.escape(tag), query):
+            prefix = query[max(0, match.start() - 4):match.start()]
+            if not any(prefix.endswith(word) for word in ('不', '没', '别', '不想', '不愿', '不要', '没有')):
+                matches.add(tag)
+                break
+    return 2 * len(matches)
 
 
 def save(root, data):
@@ -42,7 +65,7 @@ def valid_image(blob, suffix):
 def run(args):
     root = Path(args.library).expanduser().resolve()
     index = root / 'index.json'
-    data = json.loads(index.read_text()) if index.exists() else {'version': 1, 'items': {}}
+    data = json.loads(index.read_text(encoding='utf-8')) if index.exists() else {'version': 1, 'items': {}}
     items = data['items']
     if args.command == 'ingest':
         source = Path(args.source).expanduser().resolve()
@@ -76,7 +99,7 @@ def run(args):
     if args.command == 'annotate':
         if args.id not in items:
             raise ValueError('unknown image id')
-        meta = json.loads(Path(args.metadata).read_text())
+        meta = json.loads(Path(args.metadata).read_text(encoding='utf-8'))
         allowed = {'description', 'meaning', 'text', 'sarcasm', 'source', 'rights', *ARRAYS}
         if set(meta) - allowed:
             raise ValueError('unknown metadata fields')
@@ -117,21 +140,22 @@ def run(args):
         if args.command == 'search':
             if not item['ready']:
                 continue
-            terms = args.query.casefold().split()
-            haystack = json.dumps({k: item.get(k, '') for k in ('description', 'meaning', 'text', 'emotions', 'intents', 'tags')}, ensure_ascii=False).casefold()
-            score = sum(2 for term in terms if term in haystack)
+            score = lexical_score(args.query, item)
             for arg, field in ((args.emotion, 'emotions'), (args.intent, 'intents'), (args.relationship, 'relationships')):
                 if arg:
                     match = arg.casefold() in [x.casefold() for x in item.get(field, [])]
-                    if field == 'relationships' and item.get(field) and not match:
+                    if (field == 'intents' or (field == 'relationships' and item.get(field))) and not match:
                         score = -100
                         break
-                    score += 3 if match else 0
+                    if field != 'relationships':
+                        score += 3 if match else 0
             if score <= 0:
                 continue
             score += max(-2, min(2, item['likes'] - item['dislikes']))
             if time.time() - item['last_used'] < 3600:
                 score -= 2
+            if score <= 0:
+                continue
         results.append({'id': key, **item, 'path': str(image), 'score': score})
     results.sort(key=lambda entry: (-entry['score'], entry['uses'], entry['id']))
     return results[:args.limit]
