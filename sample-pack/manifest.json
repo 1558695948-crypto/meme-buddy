@@ -1,0 +1,384 @@
+[
+  {
+    "id": "07cbbb7186b91c9fc759e94f980ae4a89dbed31d799deac3c0a7747e416be46e",
+    "file": "personal-test/1.jpg",
+    "description": "蘑菇头和另一卡通人对话",
+    "meaning": "调侃表达过于复杂，希望对方讲简单一点",
+    "text": "简单点，说话的方式简单点",
+    "emotions": [
+      "speechless"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "简单点",
+      "说人话",
+      "太复杂"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "正式反馈",
+      "严肃求助"
+    ],
+    "sarcasm": "none",
+    "source": "https://atanet90.github.io/expression-pack/img/1.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "83e89f77231f5f93ea7b7a52453b8afa4fef7d0dd7f6abc77e67821d117cb922",
+    "file": "personal-test/2.jpg",
+    "description": "熊猫头伸手拒绝，配数学符号",
+    "meaning": "tan90°不存在，用数学梗表达不可能或拒绝",
+    "text": "tan90°",
+    "emotions": [
+      "playful"
+    ],
+    "intents": [
+      "tease"
+    ],
+    "tags": [
+      "不存在",
+      "不可能",
+      "拒绝"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "客户沟通",
+      "真诚求助"
+    ],
+    "sarcasm": "possible",
+    "source": "https://atanet90.github.io/expression-pack/img/2.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "bd9197a47988662e40d1a6a096efe155719f3f1b1cb427bb0a72710bc0290925",
+    "file": "personal-test/5.jpg",
+    "description": "人物嵌在积分公式里",
+    "meaning": "夸张表达完全没看懂、困惑或信息量过大",
+    "text": "∞脸茫然",
+    "emotions": [
+      "confused"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "一脸茫然",
+      "懵",
+      "没看懂",
+      "数学"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "严肃教学反馈"
+    ],
+    "sarcasm": "none",
+    "source": "https://atanet90.github.io/expression-pack/img/5.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "bf5e566ca81d83bdfb4e887cb0b60a58115b7878d2f7fdaae32119a880f69b52",
+    "file": "personal-test/7.jpg",
+    "description": "熊猫头伸手配文字",
+    "meaning": "轻松否定、反驳不可能的假设",
+    "text": "不存在的",
+    "emotions": [
+      "playful"
+    ],
+    "intents": [
+      "tease"
+    ],
+    "tags": [
+      "不存在",
+      "不可能",
+      "否定"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "正式拒绝",
+      "焦虑安慰"
+    ],
+    "sarcasm": "possible",
+    "source": "https://atanet90.github.io/expression-pack/img/7.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "1dc510d4c1d4ca0cdc7f8e23305a96e09683dc6b96600407da4a789fda12147a",
+    "file": "personal-test/10.jpg",
+    "description": "编程书籍和开发工具标志围绕人物",
+    "meaning": "自嘲沉迷编程，不能当作真实感情建议",
+    "text": "有了这些，还要女朋友干嘛",
+    "emotions": [
+      "playful"
+    ],
+    "intents": [
+      "tease"
+    ],
+    "tags": [
+      "程序员",
+      "写代码",
+      "编程自嘲"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "感情困扰",
+      "正式商务"
+    ],
+    "sarcasm": "possible",
+    "source": "https://atanet90.github.io/expression-pack/img/10.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "7dbb075809c1af6b551d0d76f6c1db1954cc05762cf2faef47fb916ddb9a2e6d",
+    "file": "personal-test/80.jpg",
+    "description": "兔子轮廓人脸叉腰反问",
+    "meaning": "熟人之间假装质问或打趣，不代表真实威胁",
+    "text": "搞事？",
+    "emotions": [
+      "playful"
+    ],
+    "intents": [
+      "tease"
+    ],
+    "tags": [
+      "搞事",
+      "调皮",
+      "吐槽"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "冲突",
+      "陌生人",
+      "客户"
+    ],
+    "sarcasm": "possible",
+    "source": "https://atanet90.github.io/expression-pack/img/80.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "fbdec8d421c0ad201c1b80b385cf86311b85c2e120ac0ef660768683d90e5d0a",
+    "file": "personal-test/100.jpg",
+    "description": "橘白猫躺在透明容器里，耳朵看似分离",
+    "meaning": "夸张表达听到离谱言论后的无语",
+    "text": "听的我耳掉了",
+    "emotions": [
+      "speechless"
+    ],
+    "intents": [
+      "tease"
+    ],
+    "tags": [
+      "无语",
+      "离谱",
+      "听不下去",
+      "猫"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "痛苦倾诉",
+      "正式反馈"
+    ],
+    "sarcasm": "possible",
+    "source": "https://atanet90.github.io/expression-pack/img/100.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "4d61de49f1da0d03cebb47e4bd32f28524be17439e1ec5a00d83c4cdd0f848f8",
+    "file": "personal-test/120.jpg",
+    "description": "简笔人物趴桌，露出调皮笑脸",
+    "meaning": "探头围观、吃瓜或静静等候，具体语气看上下文",
+    "text": "",
+    "emotions": [
+      "playful"
+    ],
+    "intents": [
+      "wait"
+    ],
+    "tags": [
+      "围观",
+      "吃瓜",
+      "等着",
+      "探头"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "严肃事件"
+    ],
+    "sarcasm": "none",
+    "source": "https://atanet90.github.io/expression-pack/img/120.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "3b78ea3edf68346e61621d9475724b7ff5593cff5a84c21b2a53d47551948328",
+    "file": "personal-test/200.jpg",
+    "description": "黄色小动物张嘴喷出红色爱心",
+    "meaning": "表达热情喜欢、感谢和友好支持",
+    "text": "",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "thanks"
+    ],
+    "tags": [
+      "谢谢",
+      "感激",
+      "喜欢",
+      "爱心",
+      "支持"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "avoid": [
+      "正式商务",
+      "不适合亲昵的对象"
+    ],
+    "sarcasm": "none",
+    "source": "https://atanet90.github.io/expression-pack/img/200.jpg | https://github.com/atanet90/expression-pack",
+    "rights": "原图权利未核实；仅纳入本地试用，不作为已授权商用素材"
+  },
+  {
+    "id": "a524e6744cf1dc31720a8f16c4b1572fb91f7d5c5b8fe8c19b430c6a5f9adc6a",
+    "file": "cat-picks/done.webp",
+    "description": "橘猫在笔记本电脑后举起双爪，纸张飞扬",
+    "meaning": "工作完成后的轻松庆祝；必须确实完成任务后才用",
+    "text": "",
+    "emotions": [
+      "happy"
+    ],
+    "intents": [
+      "celebrate"
+    ],
+    "tags": [
+      "完成",
+      "搞定",
+      "跑通",
+      "下班"
+    ],
+    "avoid": [
+      "任务仍未完成",
+      "失败反馈"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "sarcasm": "none",
+    "source": "https://stickers.gg/sticker/1768-mofusand",
+    "rights": "网络素材，原作者商业授权未核实；本地个人试用，未加入Skill销售包"
+  },
+  {
+    "id": "a0b5559e7d86b26405825d2c586ab0d94df631de684401e8581a0f453fe66631",
+    "file": "cat-picks/awkward.jpg",
+    "description": "白猫瞪大眼睛，露出不自然微笑",
+    "meaning": "面对轻微尴尬时自嘲，可能显得敷衍",
+    "text": "尷尬又不失禮貌的微笑",
+    "emotions": [
+      "speechless"
+    ],
+    "intents": [
+      "tease"
+    ],
+    "tags": [
+      "尴尬",
+      "礼貌微笑",
+      "无语"
+    ],
+    "avoid": [
+      "道歉",
+      "用户投诉",
+      "痛苦倾诉"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "sarcasm": "possible",
+    "source": "https://tools.wingzero.tw/meme/sn/194",
+    "rights": "网络素材，原作者商业授权未核实；本地个人试用，未加入Skill销售包"
+  },
+  {
+    "id": "691d05f154b79f5ee9f21007b973c85aa44c505894ceb390bf677f3f9773c359",
+    "file": "cat-picks/huh.jpg",
+    "description": "同一白猫配黄色问号与蛤字",
+    "meaning": "对意外或不合常理的话表示困惑，不表示轻蔑",
+    "text": "蛤",
+    "emotions": [
+      "confused"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "蛤",
+      "什么",
+      "这合理吗",
+      "疑惑"
+    ],
+    "avoid": [
+      "严肃求助",
+      "用户理解困难"
+    ],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "sarcasm": "none",
+    "source": "https://memes.tw/wtf?tag=%E8%9B%A4",
+    "rights": "网络素材，原作者商业授权未核实；本地个人试用，未加入Skill销售包"
+  },
+  {
+    "id": "00f7e1aa03acf04a1c403a12e90d292a52edf3dc5e4c646685b59088bf8bb2f0",
+    "file": "cat-picks/thinking.gif",
+    "description": "白色卡通猫托腮，旁边有问号",
+    "meaning": "温和地思考或询问细节",
+    "text": "",
+    "emotions": [
+      "confused"
+    ],
+    "intents": [
+      "question"
+    ],
+    "tags": [
+      "思考",
+      "再想想",
+      "确认细节",
+      "疑问"
+    ],
+    "avoid": [],
+    "relationships": [
+      "friend",
+      "熟悉同事"
+    ],
+    "sarcasm": "none",
+    "source": "https://tenor.com/view/huh-what-question-cat-cute-gif-16714152",
+    "rights": "网络素材，原作者商业授权未核实；本地个人试用，未加入Skill销售包"
+  }
+]
