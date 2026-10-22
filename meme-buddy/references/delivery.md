@@ -6,10 +6,35 @@ Choose the image, then deliver it through a channel the host actually supports. 
 
 ### WorkBuddy
 
-In a desktop test on WorkBuddy 5.8.3 (2026-10-22), local Markdown images using absolute paths, `file://`, and workspace-relative paths failed to show images. The available native `present_files` tool successfully produced an image artifact card and a visible right-panel preview. This is a tested route, not a guarantee about all host versions or tool availability.
+Desktop tests on WorkBuddy 5.8.3 (2026-10-22) found:
+
+- Local Markdown paths and `file://` failed. Raw HTML `img` with width/height was hidden. `show_widget` local-path rewriting did not work in the tested session.
+- `present_files` can create a chat artifact card AND open the side preview. It does not expose a tested no-preview option. Do not claim these are mutually exclusive or use automatic side-panel closing as a substitute for chat-only delivery.
+- Standard Markdown with a working `http://127.0.0.1:<port>/...` image loaded directly in the chat. Six casual turns produced five different successful inline images and one intentional text-only reply, with no observed automatic side-panel opening. A 144-pixel source thumbnail displayed small; the original 384-pixel assets were too large. These observations are version/session-specific, not a universal rendering guarantee.
+
+#### Authorized chat-only delivery
+
+Use `scripts/inline_display.py` after the user authorizes the local display service (a request to set up this adapter counts). It only listens on IPv4 loopback, never uploads images, serves exact registered PNG exports rather than the whole library, and uses a persistent capability URL prefix. Do not expose that prefix in public posts or external chats. Other local processes or a party knowing the URL can request those exports while it runs; this is not a strong local-user security boundary.
+
+Thumbnail preparation requires Pillow; the existing library CLI and serving existing exports remain standard-library-only. Use an available Python with Pillow, or `uv run --with pillow python` if uv is installed; do not silently modify global Python.
+
+```bash
+uv run --with pillow python <skill-dir>/scripts/inline_display.py prepare /actual/image.jpg --size 144
+python3 <skill-dir>/scripts/inline_display.py ensure
+python3 <skill-dir>/scripts/inline_display.py status
+python3 <skill-dir>/scripts/inline_display.py stop
+```
+
+- `prepare` retains the original, creates a metadata-free PNG thumbnail (default maximum dimension 144), starts/reuses the service, and returns the actual `url` and `markdown`. Emit that Markdown directly in the reply, alongside a brief natural reaction. Do not also call `present_files` or `show_widget`. Cached returned URLs can be reused while service health is known; run `ensure` after a new host session, restart, or failed load. No need to re-prepare/recheck on every turn.
+- Assets live in `~/.meme-buddy/display/assets/`; config persists the port and capability token. Both the thumbnail filename (content hash) and URL stay unchanged across service stop/ensure. Do not rotate the token, choose a new port, remove old exports, or use temporary directories during routine updates: old messages depend on them. If the configured port is occupied by another program, report the conflict instead of silently changing it.
+- The service is detached from the command, not from the computer's lifetime. Leave it running during normal use; `stop` explicitly disables loading until `ensure` runs again. Starting the service is not an OS login/reboot recovery mechanism. No LaunchAgent, login item or boot service is installed automatically. Request explicit agreement before adding system auto-start. Old replies can fail after reboot until the service is restored, and a failed image may require the conversation to be reopened/reloaded. Do not promise offline embedding, cross-device availability, or permanent availability.
+- Static images only in this adapter. Animated input is rejected, not silently flattened. Use a separately verified animated delivery route when needed. Small-image legibility and actual host scale still require visual inspection; the validator is not visual acceptance.
+- `--root <persistent-directory>` must appear before the command if selecting a non-default store. Use the same root for future `ensure` and `stop`. Run mutations sequentially. This version does not install a watcher or keep the host's process alive.
+
+#### Artifact fallback
 
 - Inspect the tools actually exposed by the current host. If `present_files` is available, use its documented file arguments to present the selected image; do not invent an API signature. Use an existing valid file directly when accepted. If the tool requires workspace files, copy the asset into the actual task workspace under a readable, collision-safe name, retaining the original.
-- Keep the conversational reply short and natural, then present the file. Do not repeatedly try local Markdown variants already known to fail in the session. Do not substitute a paragraph explaining what the unseen meme would have meant.
+- Use this fallback only when a file artifact is acceptable to the user. If the user requires chat-only delivery and loopback is unavailable, state the limitation instead of silently opening a side preview. Do not repeatedly try local Markdown variants already known to fail. Do not substitute a paragraph explaining what the unseen meme would have meant.
 - A successful tool result establishes presentation submission. Only a visible card/preview or explicit user feedback establishes rendering. If you cannot inspect the UI, do not claim that you saw it render. Do not burden every normal reply with a request for confirmation.
 - Artifact-card delivery is not an inline sticker bubble. Do not promise inline display, automatic animation, or external-chat sending based on a successful static-image preview.
 - Without a native presentation channel, explain the concrete limitation once. Offer an available file artifact/link; a `file://` string is not a verified clickable fallback. Do not upload private images, start a server, or modify WorkBuddy to work around rendering without authorization.
