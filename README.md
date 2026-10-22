@@ -14,6 +14,8 @@
 
 启用范围取决于宿主对会话与 Skill 的支持；Skill 本身没有常驻聊天监听程序。
 
+首次使用时，AI会参考当前可见的对话，自行搜集一批它喜欢且适合双方聊天的表情，最多20张，不必凑满。检查、标注入库后保存完成状态，后续不重复初始化。没有搜索能力时会说明并暂缓；不会把私人对话原文发送给搜索网站。用户导入的素材包不受这20张上限限制。
+
 ## 随附表情包
 
 `sample-pack/` 包含 13 张已查看、标注的网络反应图，以及逐图来源和权利状态。导入到自己的本地图库：
@@ -46,7 +48,13 @@ python3 tools/import_sample_pack.py --pack moso-pack
 
 当前没有 embedding 检索、感知去重或内置微信/飞书发送器。CLI 无网络依赖，库写入应顺序执行。
 
-检索更新：中文整句可通过已标注的短语召回；显式指定的 intent 必须匹配，关系只过滤；搜索只读元数据值，扣完偏好与近期使用分后再过滤。中文召回仍依赖标签与 Agent 对语境的理解，不保证理解所有否定或反讽。
+自主表达更新：AI自己决定用图时机、数量与是否复用。`catalog` 提供可分页的紧凑目录与真实路径，`get` 支持按ID批量取图；搜索不再按喜好或近期使用扣分。emotion/intent/relationship只有显式传入才精确过滤。中文召回仍依赖标签与Agent语境理解，不保证理解所有否定或反讽。
+
+```bash
+python3 meme-buddy/scripts/meme_buddy.py catalog --tag MoSo --limit 20
+python3 meme-buddy/scripts/meme_buddy.py search --query '思考'
+python3 meme-buddy/scripts/meme_buddy.py get <图片ID>
+```
 
 ## 验证
 

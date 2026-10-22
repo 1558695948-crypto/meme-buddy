@@ -35,11 +35,11 @@ class LibraryTests(unittest.TestCase):
             self.assertEqual(search('--query', '火箭', '--relationship', 'friend'), [])
             self.assertEqual(search('--query', '不想上班'), [])
             item['dislikes'] = 2
-            self.assertEqual(search('--query', '思考'), [])
+            self.assertEqual(len(search('--query', '思考')), 1)
             item['dislikes'] = 0
             import time
             item['last_used'] = time.time()
-            self.assertEqual(search('--query', '思考'), [])
+            self.assertEqual(len(search('--query', '思考')), 1)
 
     def test_import_annotation_search_feedback_and_reset(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -52,22 +52,50 @@ class LibraryTests(unittest.TestCase):
             image = root / 'test.png'
             image.write_bytes(b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('!2I5B', 1, 1, 8, 2, 0, 0, 0)) + chunk(b'IDAT', zlib.compress(b'\x00\xff\x00\x00')) + chunk(b'IEND', b''))
             key = call('ingest', str(image))[0]['id']
+            self.assertEqual(call('onboarding-status')['status'], 'not_started')
+            rejected = subprocess.run([sys.executable, str(CLI), '--library', str(root / 'library'), 'onboarding-complete', '--ids', key], capture_output=True)
+            self.assertNotEqual(rejected.returncode, 0)
+            over_limit = subprocess.run([sys.executable, str(CLI), '--library', str(root / 'library'), 'onboarding-complete', '--ids', *[str(i) for i in range(21)]], capture_output=True, text=True)
+            self.assertNotEqual(over_limit.returncode, 0)
+            self.assertIn('1 to 20', over_limit.stderr)
             self.assertEqual(call('ingest', str(image))[0]['status'], 'duplicate')
             self.assertEqual(len(call('pending')), 1)
             self.assertEqual(call('search', '--query', 'thanks'), [])
             meta = root / 'meta.json'
             meta.write_text(json.dumps({'description': '猫感谢', 'meaning': '真诚表达感激', 'emotions': ['grateful'], 'intents': ['thanks'], 'relationships': ['friend']}))
             call('annotate', key, str(meta))
+            self.assertEqual(call('onboarding-complete', '--ids', key)['status'], 'complete')
+            catalog = call('catalog', '--limit', '1')
+            self.assertEqual(catalog['total'], 1)
+            self.assertIsNone(catalog['next_offset'])
+            self.assertTrue(Path(catalog['items'][0]['path']).is_file())
+            self.assertEqual(call('catalog', '--offset', '1')['items'], [])
+            self.assertEqual(call('catalog', '--tag', 'missing')['total'], 0)
+            batch = call('get', key, 'missing')
+            self.assertGreater(batch[0]['bytes'], 0)
+            self.assertIn('error', batch[1])
+            data_path = root / 'library/index.json'
+            indexed = json.loads(data_path.read_text(encoding='utf-8'))
+            indexed['items']['second'] = dict(indexed['items'][key])
+            data_path.write_text(json.dumps(indexed), encoding='utf-8')
+            page1 = call('catalog', '--limit', '1')
+            page2 = call('catalog', '--limit', '1', '--offset', str(page1['next_offset']))
+            self.assertNotEqual(page1['items'][0]['id'], page2['items'][0]['id'])
+            self.assertIsNone(page2['next_offset'])
+            del indexed['items']['second']
+            data_path.write_text(json.dumps(indexed), encoding='utf-8')
             self.assertEqual(call('pending'), [])
             self.assertEqual(call('search', '--emotion', 'grateful')[0]['id'], key)
             self.assertEqual(call('search', '--emotion', 'grateful', '--relationship', 'client'), [])
             self.assertEqual(call('search', '--query', '火箭升空'), [])
             call('feedback', key, 'used')
+            self.assertEqual(call('catalog')['revision'], catalog['revision'])
             entry = call('list')[0]
             self.assertEqual(entry['uses'], 1)
             self.assertEqual(entry['likes'], 0)
             call('feedback', key, 'like')
             call('reset-feedback')
+            self.assertEqual(call('onboarding-status')['ids'], [key])
             self.assertEqual(call('list')[0]['likes'], 0)
             self.assertTrue(Path(call('list')[0]['path']).is_file())
             fake = root / 'fake.png'

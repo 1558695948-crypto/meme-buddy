@@ -62,11 +62,57 @@ def valid_image(blob, suffix):
             (suffix == '.webp' and blob[:4] == b'RIFF' and blob[8:12] == b'WEBP'))
 
 
+def compact_asset(root, key, item):
+    image = asset_path(root, item)
+    if not image.is_file():
+        raise ValueError('asset file missing')
+    return {'id': key, 'path': str(image), 'bytes': image.stat().st_size,
+            'format': image.suffix.lower().lstrip('.'),
+            **{field: item.get(field) for field in ('text', 'meaning', 'description', 'ready', 'intents', 'tags', 'sarcasm', 'avoid')}}
+
+
 def run(args):
     root = Path(args.library).expanduser().resolve()
     index = root / 'index.json'
     data = json.loads(index.read_text(encoding='utf-8')) if index.exists() else {'version': 1, 'items': {}}
     items = data['items']
+    if args.command == 'get':
+        result = []
+        for key in args.ids:
+            try:
+                result.append(compact_asset(root, key, items[key]))
+            except (KeyError, ValueError, OSError) as error:
+                result.append({'id': key, 'error': 'unknown image id' if isinstance(error, KeyError) else str(error)})
+        return result
+    if args.command == 'catalog':
+        entries = []
+        for key, item in sorted(items.items()):
+            if not item.get('ready') and not args.include_pending:
+                continue
+            if args.tag and args.tag.casefold() not in [tag.casefold() for tag in item.get('tags', [])]:
+                continue
+            try:
+                entries.append(compact_asset(root, key, item))
+            except (ValueError, OSError):
+                continue
+        revision = hashlib.sha256(json.dumps(entries, sort_keys=True, ensure_ascii=False).encode('utf-8')).hexdigest()
+        end = args.offset + args.limit
+        return {'revision': revision, 'total': len(entries), 'offset': args.offset,
+                'next_offset': end if end < len(entries) else None,
+                'items': entries[args.offset:end]}
+    if args.command == 'onboarding-status':
+        return data.get('onboarding', {'status': 'not_started'})
+    if args.command == 'onboarding-complete':
+        ids = list(dict.fromkeys(args.ids))
+        if not 1 <= len(ids) <= 20:
+            raise ValueError('starter collection must contain 1 to 20 unique images')
+        for key in ids:
+            item = items.get(key)
+            if not item or not item.get('ready') or not asset_path(root, item).is_file():
+                raise ValueError('starter image must exist and be annotated: ' + key)
+        data['onboarding'] = {'status': 'complete', 'ids': ids, 'completed_at': time.time()}
+        save(root, data)
+        return data['onboarding']
     if args.command == 'ingest':
         source = Path(args.source).expanduser().resolve()
         if not source.exists():
@@ -144,20 +190,15 @@ def run(args):
             for arg, field in ((args.emotion, 'emotions'), (args.intent, 'intents'), (args.relationship, 'relationships')):
                 if arg:
                     match = arg.casefold() in [x.casefold() for x in item.get(field, [])]
-                    if (field == 'intents' or (field == 'relationships' and item.get(field))) and not match:
+                    if not match:
                         score = -100
                         break
                     if field != 'relationships':
                         score += 3 if match else 0
             if score <= 0:
                 continue
-            score += max(-2, min(2, item['likes'] - item['dislikes']))
-            if time.time() - item['last_used'] < 3600:
-                score -= 2
-            if score <= 0:
-                continue
         results.append({'id': key, **item, 'path': str(image), 'score': score})
-    results.sort(key=lambda entry: (-entry['score'], entry['uses'], entry['id']))
+    results.sort(key=lambda entry: (-entry['score'], entry['id']))
     return results[:args.limit]
 
 
@@ -165,13 +206,19 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--library', default='~/.meme-buddy')
     subs = parser.add_subparsers(dest='command', required=True)
+    catalog = subs.add_parser('catalog')
+    catalog.add_argument('--limit', type=int, choices=range(1, 101), default=20)
+    catalog.add_argument('--offset', type=int, default=0)
+    catalog.add_argument('--tag')
+    catalog.add_argument('--include-pending', action='store_true')
+    subs.add_parser('get').add_argument('ids', nargs='+')
     subs.add_parser('ingest').add_argument('source')
     annotate = subs.add_parser('annotate')
     annotate.add_argument('id')
     annotate.add_argument('metadata')
     for name in ('pending', 'list', 'search'):
         sub = subs.add_parser(name)
-        sub.add_argument('--limit', type=int, choices=range(1, 101), default=12 if name != 'search' else 3)
+        sub.add_argument('--limit', type=int, choices=range(1, 101), default=12 if name != 'search' else 10)
         if name == 'search':
             sub.add_argument('--query', default='')
             sub.add_argument('--emotion')
@@ -181,7 +228,11 @@ def main():
     feedback.add_argument('id')
     feedback.add_argument('action', choices=('like', 'dislike', 'used'))
     subs.add_parser('reset-feedback')
+    subs.add_parser('onboarding-status')
+    subs.add_parser('onboarding-complete').add_argument('--ids', nargs='+', required=True)
     args = parser.parse_args()
+    if getattr(args, 'offset', 0) < 0:
+        parser.error('offset must be nonnegative')
     try:
         print(json.dumps(run(args), ensure_ascii=False, indent=2))
     except (ValueError, KeyError, OSError) as error:
