@@ -6,6 +6,7 @@ import socket
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from http.server import ThreadingHTTPServer
 from PIL import Image
 import inline_display as display
@@ -51,6 +52,125 @@ class DisplayTests(unittest.TestCase):
 
     def test_config_survives_reuse(self):
         self.assertEqual(self.cfg, display.config(self.root, port=19999))
+
+    def test_read_only_config_does_not_create_store(self):
+        root = self.root / 'never-created'
+        with patch.object(Path, 'mkdir', side_effect=AssertionError('read must not write')):
+            self.assertIsNone(display.config(root, create=False))
+        self.assertFalse(root.exists())
+
+    def test_invalid_config_rejected_without_rotating(self):
+        path = self.root / 'config.json'
+        for invalid in ({}, {'port': '18764', 'token': 'a' * 48}, [], {'port': True}):
+            path.write_text(json.dumps(invalid))
+            original = path.read_bytes()
+            with self.assertRaises(ValueError):
+                display.config(self.root)
+            self.assertEqual(path.read_bytes(), original)
+
+    def test_corrupt_cache_is_nonfatal_and_readonly(self):
+        library = self.root / 'empty-library'
+        library.mkdir()
+        (library / 'index.json').write_text('{"items": {}}')
+        path = self.root / 'catalog.json'
+        path.write_text('{broken')
+        result = display.display_catalog(self.root, self.cfg, library)
+        self.assertEqual(result['items'], [])
+        self.assertTrue(result['warnings'])
+        self.assertEqual(path.read_text(), '{broken')
+
+    def test_nested_directory_creation_and_library_save_with_shim(self):
+        from meme_buddy import save
+        nested = self.root / 'new' / 'nested'
+        original = Path.mkdir
+        def shim(path, *args, **kwargs):
+            self.assertNotIn('parents', kwargs)
+            if path.is_dir():
+                raise FileExistsError('simulated shim')
+            return original(path, *args, **kwargs)
+        with patch.object(Path, 'mkdir', shim):
+            display.ensure_directory(nested)
+            save(nested, {'items': {}})
+            save(nested, {'items': {}, 'version': 1})
+        self.assertEqual(json.loads((nested / 'index.json').read_text())['version'], 1)
+
+    def test_thumbnail_drops_exif(self):
+        exif = Image.Exif()
+        exif[0x010E] = 'private location note'
+        Image.new('RGB', (200, 200), 'blue').save(self.source, exif=exif)
+        item = display.export_image(self.root, self.cfg, self.source)
+        with Image.open(item['path']) as image:
+            self.assertFalse(image.getexif())
+            self.assertNotIn('exif', image.info)
+
+    def test_warmup_isolates_failure_and_cached_joins_live_meaning(self):
+        library = Path(self.temp.name) / 'library'
+        assets = library / 'assets'
+        assets.mkdir(parents=True)
+        items = {}
+        for color in ('red', 'blue'):
+            source = assets / (color + '.png')
+            Image.new('RGB', (100, 100), color).save(source)
+            key = hashlib.sha256(source.read_bytes()).hexdigest()
+            items[key] = {'file': 'assets/' + source.name, 'ready': True, 'meaning': color}
+        gif = assets / 'animated.gif'
+        Image.new('RGB', (16, 16), 'red').save(gif, save_all=True,
+            append_images=[Image.new('RGB', (16, 16), 'blue')], duration=100, loop=0)
+        gif_id = hashlib.sha256(gif.read_bytes()).hexdigest()
+        items[gif_id] = {'file': 'assets/animated.gif', 'ready': True}
+        index = library / 'index.json'
+        index.write_text(json.dumps({'items': items}))
+        original = index.read_bytes()
+        result = display.display_catalog(self.root, self.cfg, library, warmup=True)
+        good = [x for x in result['items'] if 'inline' in x]
+        self.assertEqual(len(good), 2)
+        self.assertEqual(len({x['inline']['url'] for x in good}), 2)
+        self.assertTrue(any(x.get('id') == gif_id and 'error' in x for x in result['items']))
+        self.assertEqual(index.read_bytes(), original)
+        items[good[0]['id']]['meaning'] = 'updated meaning'
+        index.write_text(json.dumps({'items': items}))
+        with patch.object(Path, 'mkdir', side_effect=AssertionError('cached must be read only')):
+            cached = display.display_catalog(self.root, self.cfg, library)
+        updated = next(x for x in cached['items'] if x['id'] == good[0]['id'])
+        self.assertEqual(updated['meaning'], 'updated meaning')
+        self.assertEqual(updated['inline'], good[0]['inline'])
+        self.assertNotIn(self.cfg['token'], (self.root / 'catalog.json').read_text())
+        page = display.display_catalog(self.root, self.cfg, library, limit=1)
+        self.assertEqual(len(page['items']), 1)
+        self.assertEqual(page['next_offset'], 1)
+        export = self.root / 'assets' / good[0]['inline']['url'].rsplit('/', 1)[1]
+        export.unlink()
+        missing = display.display_catalog(self.root, self.cfg, library, ids=[good[0]['id']])
+        self.assertIn('error', missing['items'][0])
+
+    def test_existing_directories_skip_broken_mkdir_shim(self):
+        first = display.export_image(self.root, self.cfg, self.source)
+        with patch.object(Path, 'mkdir', side_effect=FileExistsError('simulated shim')):
+            self.assertEqual(display.config(self.root), self.cfg)
+            self.assertEqual(display.export_image(self.root, self.cfg, self.source), first)
+
+    def test_directory_errors_not_hidden(self):
+        blocked = self.root / 'blocked'
+        blocked.write_text('not a directory')
+        with self.assertRaises(FileExistsError):
+            display.ensure_directory(blocked)
+        with patch.object(Path, 'mkdir', side_effect=PermissionError('denied')):
+            with self.assertRaises(PermissionError):
+                display.ensure_directory(self.root / 'missing')
+        link = self.root / 'link'
+        link.symlink_to(self.root, target_is_directory=True)
+        with self.assertRaises(ValueError):
+            display.ensure_directory(link)
+
+    def test_concurrent_directory_creation_accepted(self):
+        target = self.root / 'concurrent'
+        original = Path.mkdir
+        def raced(path, *args, **kwargs):
+            original(path, *args, **kwargs)
+            raise FileExistsError('created concurrently')
+        with patch.object(Path, 'mkdir', raced):
+            display.ensure_directory(target)
+        self.assertTrue(target.is_dir())
 
     def test_http_exact_asset_only(self):
         self.start()

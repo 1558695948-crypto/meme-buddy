@@ -9,6 +9,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import time
+from local_fs import ensure_directory
 
 EXTENSIONS = {'.png', '.jpg', '.jpeg', '.webp', '.gif'}
 ARRAYS = ('emotions', 'intents', 'tags', 'relationships', 'avoid')
@@ -37,7 +38,7 @@ def lexical_score(query, item):
 
 
 def save(root, data):
-    root.mkdir(parents=True, exist_ok=True)
+    ensure_directory(root)
     fd, name = tempfile.mkstemp(dir=root, suffix='.tmp')
     try:
         with os.fdopen(fd, 'w', encoding='utf-8') as stream:
@@ -68,7 +69,7 @@ def compact_asset(root, key, item):
         raise ValueError('asset file missing')
     return {'id': key, 'path': str(image), 'bytes': image.stat().st_size,
             'format': image.suffix.lower().lstrip('.'),
-            **{field: item.get(field) for field in ('text', 'meaning', 'description', 'ready', 'intents', 'tags', 'sarcasm', 'avoid')}}
+            **{field: item.get(field) for field in ('text', 'meaning', 'description', 'ready', 'emotions', 'intents', 'tags', 'sarcasm', 'avoid')}}
 
 
 def run(args):
@@ -135,7 +136,7 @@ def run(args):
                 result.append({'id': key, 'status': 'duplicate'})
                 continue
             target = root / 'assets' / (key + suffix)
-            target.parent.mkdir(parents=True, exist_ok=True)
+            ensure_directory(target.parent)
             shutil.copyfile(file, target)
             items[key] = {'file': str(target.relative_to(root)), 'ready': False,
                           'likes': 0, 'dislikes': 0, 'uses': 0, 'last_used': 0}

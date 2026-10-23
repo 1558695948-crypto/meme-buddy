@@ -25,9 +25,13 @@ Use this as decision guidance, not a compulsory multi-call pipeline:
 
 Reuse valid known paths without mandatory repeated searches, viewing or feedback calls. Repetition may be intentional humor; variety is not a quota. Refresh missing or stale resources. If inline delivery is unavailable, explain briefly; do not silently substitute a side-panel artifact for a requested chat-only meme. Do not troubleshoot on every casual turn.
 
+If thumbnail preparation fails during casual conversation, stop that preparation attempt and continue with text or an already understood fitting cached image. Do not inspect helper source, switch interpreters, bypass sandbox restrictions or start a debugging loop unless the user asks to fix the environment. A cache miss is not a reason to force the only cached meme into an unrelated reply. Keep the whole library available for future choices; caching is an optimization, not a fixed expressive menu.
+
 ## Build vocabulary without delaying conversation
 
 On first activation, read [references/first-use.md](references/first-use.md). Based only on available conversation, freely choose up to 20 memes you enjoy using with this user; fewer good images are better than a filled quota. Preserve existing libraries and onboarding state across updates. A ready library can serve the first reply before collection. Collection may use host network tools; never send private dialogue to search services. Installation itself performs no network job.
+
+For an authorized WorkBuddy setup, prepare a bounded selection once with the delivery guide's `warmup`; retrieve its meanings and real URLs with read-only `cached`. This removes repeated thumbnail work from ordinary replies. Do not block the first useful response on preparing an entire library. A missing or unsuitable cached image means text is fine, not that your expressive vocabulary must shrink to the cache.
 
 Read [references/library.md](references/library.md) when you need catalog/search commands, imports, annotation, feedback or new asset creation. These are supporting capabilities, not prerequisites for every reply. Python 3.9+ is required for local helpers. User imports do not imply commercial rights; retain sources without inventing licenses. Store no raw conversation or contact names.
 
