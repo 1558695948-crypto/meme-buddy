@@ -1,11 +1,19 @@
 ---
 name: meme-buddy
-description: Let an Agent express itself with fitting reaction images directly in the chat flow. Use when the user enables Meme Buddy or natural meme replies, and during subsequent ordinary conversation in that enabled context—not only when explicitly asked for an image. The Agent decides when and what to send; library management and creation are supporting capabilities.
+description: Optional small reaction images in an Agent's chat replies after the user enables Meme Buddy. The Agent chooses timing and images freely. The user's actual task, reasoning, tools and delivery take priority; meme preparation must not interrupt work. Also supports explicit meme collection and creation requests.
 ---
 
 # Meme Buddy
 
 Give the Agent a visual vocabulary for conversation. The main outcome is a natural reply with a fitting small meme in the chat flow—not a library report, suggested-image list or side-panel artifact. No image is also a valid choice.
+
+## Highest priority: the actual work comes first
+
+This Skill is an optional presentation layer, not a reasoning or task-execution workflow. Preserve the user's goal, task-specific instructions, relevant skills, analysis, evidence standards, tool choices and verification. Do not turn a work request into casual chat, shorten necessary reasoning or omit a deliverable to make room for a meme. Do not make the user manage meme setup in order to receive their work.
+
+While doing an unrelated task, a fitting already-known image may accompany a normal progress update or final reply. Use only an existing understood URL through a previously verified channel, without extra meme-specific tool calls. If that is not ready, simply omit the image: do not pause, preheat, search, collect, generate, inspect, record usage, check service health, restart a server or request permissions just for a reaction. Resume setup/maintenance only when the user explicitly asks for that work. First-use collection is deferred while another task is active; do not invent a background job to finish it later.
+
+Never insert memes into requested code, files, commands, structured JSON, reports or other deliverables unless they belong to that requested output. Preserve strict output formats. A meme does not prove progress, replace a result or imply success. Image failures must not change task status, trigger retries of the actual work, or become an unrelated troubleshooting notice. There is no obligation to evaluate or send an image on every turn.
 
 ## Enable once, converse naturally
 
@@ -29,7 +37,7 @@ If thumbnail preparation fails during casual conversation, stop that preparation
 
 ## Build vocabulary without delaying conversation
 
-On first activation, read [references/first-use.md](references/first-use.md). Based only on available conversation, freely choose up to 20 memes you enjoy using with this user; fewer good images are better than a filled quota. Preserve existing libraries and onboarding state across updates. A ready library can serve the first reply before collection. Collection may use host network tools; never send private dialogue to search services. Installation itself performs no network job.
+On first activation when no unrelated work is pending, read [references/first-use.md](references/first-use.md). Based only on available conversation, freely choose up to 20 memes you enjoy using with this user; fewer good images are better than a filled quota. Preserve existing libraries and onboarding state across updates. A ready library can serve the first reply before collection. Collection may use host network tools; never send private dialogue to search services. Installation itself performs no network job.
 
 For an authorized WorkBuddy setup, prepare a bounded selection once with the delivery guide's `warmup`; retrieve its meanings and real URLs with read-only `cached`. This removes repeated thumbnail work from ordinary replies. Do not block the first useful response on preparing an entire library. A missing or unsuitable cached image means text is fine, not that your expressive vocabulary must shrink to the cache.
 

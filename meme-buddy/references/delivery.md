@@ -4,6 +4,8 @@
 
 Choose the image, then deliver it through a channel the host actually supports. Copy the complete path from `catalog`, `get`, or another real file result; do not retype, shorten, or reconstruct a hash. If a path is stale or uncertain, check it before use. A selected ID, image description, alt text, or returned path alone does not establish image delivery.
 
+During an unrelated work task, this guidance does not authorize image setup or verification calls: use only a known fitting URL and an already verified channel, or omit the reaction. Preserve the actual task's tools, verification, output format and delivery timing. Missing images must not cause permission requests, server recovery, collection or diagnostic notices in the work flow. Explicit meme/setup tasks can use the procedures below.
+
 ### WorkBuddy
 
 Desktop tests on WorkBuddy 5.8.3 (2026-10-22) found:
